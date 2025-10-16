@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main {
     static void main() {
@@ -14,6 +15,7 @@ public class Main {
         Path p2 = Paths.get("src/OOP_2_9/personuppgifterTALL.txt");
         String line1;
         String line2;
+        Scanner scanner = new Scanner(System.in);
 
         try (BufferedReader br = Files.newBufferedReader(p1);
              BufferedWriter bw = Files.newBufferedWriter(p2)) {
@@ -34,6 +36,14 @@ public class Main {
                 }
 
             }
+
+            UserDialog ud = new UserDialog();
+            System.out.print("Do you want to create a new person? (Y/N): ");
+             String option = scanner.nextLine();
+             if (option.equalsIgnoreCase("y")){
+                 ud.start();
+             }
+
 
 
         } catch (IOException e) {

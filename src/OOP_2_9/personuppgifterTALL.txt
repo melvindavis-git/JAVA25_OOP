@@ -2,3 +2,7 @@ Rulle Rullson, Xvägen 3, 12345 Ystad
 56, 35, 201
 Nisse Nilsson, Xvägen 6, 12345 Ystad
 23, 80, 205
+Tim G, abcdefg 10, 12090 Stockholm
+30, 80, 205
+test test, test 123, 123 123 test
+40, 60, 210

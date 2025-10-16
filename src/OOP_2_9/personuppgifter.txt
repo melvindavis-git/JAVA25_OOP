@@ -14,3 +14,9 @@ Ville Wilhemsson, Xvägen 7, 12345 Ystad
 54, 123, 187
 Sune Samuelsson, Xvägen 8, 12345 Ystad
 38, 98, 175
+Melvin Davis, abc123, 14040 Huddinge
+24, 75, 180
+Tim G, abcdefg 10, 12090 Stockholm
+30, 80, 205
+test test, test 123, 123 123 test
+40, 60, 210
