@@ -1,0 +1,2 @@
+Namn;Adress;Mailadress;Personnummer;Datum_köpt_gymmedlemskap;Datum_senast_uppdaterad;Medlemsnivå
+Melvin Davis;Xvägen 1, 101010 Stockholm;melvin@fakemail.se;010203-1234;2001-01-01;2025-10-10;Admin
