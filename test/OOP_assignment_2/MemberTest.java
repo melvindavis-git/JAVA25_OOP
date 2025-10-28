@@ -11,7 +11,7 @@ class MemberTest {
     Member m1 = new Member
             ("Fredik Berggren", "Skolgränd 8 16819 Norrköping", "fredde@fakemail.se",
                     "851020-6728", LocalDate.of(2019, 12, 30),
-                    LocalDate.of(2024, 12, 30), "Platina");
+                    LocalDate.now(), "Platina");
     Member m2 = new Member
             ("Fredik Berggren", "Skolgränd 8 16819 Norrköping", "fredde@fakemail.se",
                     "851020-6728", LocalDate.of(2019, 12, 30),
