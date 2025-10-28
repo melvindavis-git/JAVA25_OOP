@@ -4,15 +4,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.print.PrinterException;
 import java.io.*;
 
-public class TextEditor extends JFrame implements ActionListener {
+public class TextEditor extends JFrame implements ActionListener, KeyListener {
 
-    JPanel p = new JPanel();
+    private String temp = "";
+    private int charCount = 0;
+    private int wordCount = 0;
+
+    JPanel pUp = new JPanel();
     JPanel pCenter = new JPanel();
     JPanel pDown = new JPanel();
-    JLabel l = new JLabel("Filname:");
+    JPanel topLeft = new JPanel();
+    JPanel topRight = new JPanel();
+    JPanel downRight = new JPanel();
+    JPanel downLeft = new JPanel();
+    JLabel l = new JLabel("Filename:");
     JTextField tf = new JTextField(10);
     JButton b1 = new JButton("Open");
     JButton b2 = new JButton("Save");
@@ -20,25 +30,33 @@ public class TextEditor extends JFrame implements ActionListener {
     JButton b4 = new JButton("Exit");
     JButton b5 = new JButton("Clear all");
     JButton b6 = new JButton("Undo clear");
-    JTextArea ta = new JTextArea(10, 45);
+    JTextArea ta = new JTextArea(20, 60);
     JScrollPane sp = new JScrollPane(ta);
-
-    String temp = "";
+    JLabel labelCounter = new JLabel("characters: " + charCount);
+    JLabel labelWordCounter = new JLabel("words: " + wordCount);
 
 
     public TextEditor(){
-        this.add(p, BorderLayout.NORTH);
+        this.add(pUp, BorderLayout.NORTH);
         this.add(pCenter, BorderLayout.CENTER);
         this.add(pDown, BorderLayout.SOUTH);
-        p.add(l);
-        p.add(tf);
-        p.add(b1);
-        p.add(b2);
-        p.add(b3);
-        p.add(b4);
+        pUp.setLayout(new BorderLayout());
+        pUp.add(topLeft, BorderLayout.WEST);
+        pUp.add(topRight, BorderLayout.EAST);
+        pDown.setLayout(new BorderLayout());
+        pDown.add(downRight, BorderLayout.EAST);
+        pDown.add(downLeft, BorderLayout.WEST);
+        downRight.add(b5);
+        downRight.add(b6);
+        downLeft.add(labelCounter);
+        downLeft.add(labelWordCounter);
+        topLeft.add(l);
+        topLeft.add(tf);
+        topRight.add(b1);
+        topRight.add(b2);
+        topRight.add(b3);
+        topRight.add(b4);
         pCenter.add(sp);
-        pDown.add(b5);
-        pDown.add(b6);
 
         b1.addActionListener(this);
         b2.addActionListener(this);
@@ -46,9 +64,11 @@ public class TextEditor extends JFrame implements ActionListener {
         b4.addActionListener(this);
         b5.addActionListener(this);
         b6.addActionListener(this);
+        ta.addKeyListener(this);
 
         pack();
         setVisible(true);
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -73,8 +93,10 @@ public class TextEditor extends JFrame implements ActionListener {
             System.exit(0);
         }
         else if (e.getSource() == b5){
-            temp = ta.getText();
-            ta.setText("");
+            if (!ta.getText().isEmpty()) {
+                temp = ta.getText();
+                ta.setText("");
+            }
         }
         else if (e.getSource() == b6) {
             if (!temp.isEmpty()){
@@ -111,4 +133,24 @@ public class TextEditor extends JFrame implements ActionListener {
         }
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        String text = ta.getText().trim();
+        charCount = text.replaceAll("\\s+", "").length();
+        labelCounter.setText("characters: " + charCount);
+
+        int wordCount = 0;
+        if (!text.isEmpty()){
+            wordCount = text.split("\\s+").length;
+        }
+        labelWordCounter.setText("words: " + wordCount);
+    }
 }
